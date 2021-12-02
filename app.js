@@ -11,6 +11,9 @@ const ingresosController = require("./controller/controller_ingresos");
 const egresosController = require("./controller/controller_egresos");
 
 const app = express();
+
+var port = process.env.PORT || 8080;
+
 app.use(
   cors({
     methods: ["GET", "POST", "DELETE", "UPDATE", "PUT", "PATCH"],
@@ -375,4 +378,4 @@ function verifyToken(req, res, next) {
   next();
 }
 
-app.listen(1400, () => console.log("Servidor Corriendo"));
+app.listen(port, () => console.log("Servidor Corriendo"));
