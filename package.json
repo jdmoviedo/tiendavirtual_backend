@@ -7,6 +7,7 @@
     "node": "16.13.0"
   },
   "scripts": {
+    "start": "node app.js",
     "app": "nodemon app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
