@@ -9,12 +9,15 @@ productosController.insertar = async (producto) => {
 };
 
 productosController.listar = async (usuario) => {
-  return await productos.find({ "categoria[].usuario": usuario });
+  return await (
+    await productos.find({})
+  ).filter((producto) => {
+    return producto.categoria[0].usuario[0].id == usuario;
+  });
 };
 
 productosController.listarxcategoria = async (busqueda) => {
   return await productos.find({
-    "categoria[].usuario": busqueda.usuario,
     categoria: busqueda.categoria,
   });
 };

@@ -9,7 +9,11 @@ ingresosController.insertar = async (ingreso) => {
 };
 
 ingresosController.listar = async (usuario) => {
-  return await ingresos.find({ "producto[].categoria[].usuario": usuario });
+  return await (
+    await ingresos.find()
+  ).filter((ingreso) => {
+    return ingreso.producto[[0]].categoria[0].usuario[0].id == usuario;
+  });
 };
 
 ingresosController.actualizar = async (ingreso) => {

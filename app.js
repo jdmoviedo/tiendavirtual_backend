@@ -45,7 +45,7 @@ app.post("/api/usuarios/signin", async (req, res) => {
 });
 
 //ACTUALIZAR
-app.put("/api/usuarios",verifyToken, async (req, res) => {
+app.put("/api/usuarios", verifyToken, async (req, res) => {
   let usuario = req.body;
   try {
     await usuariosController.actualizar(usuario);
@@ -56,7 +56,7 @@ app.put("/api/usuarios",verifyToken, async (req, res) => {
 });
 
 //LISTAR
-app.get("/api/usuarios",verifyToken, async (req, res) => {
+app.get("/api/usuarios", verifyToken, async (req, res) => {
   try {
     let listaUsuarios = await usuariosController.listar();
     res.status(200).json(listaUsuarios);
@@ -66,7 +66,7 @@ app.get("/api/usuarios",verifyToken, async (req, res) => {
 });
 
 //BUSCAR
-app.get("/api/usuarios/:id",verifyToken, async (req, res) => {
+app.get("/api/usuarios/:id", verifyToken, async (req, res) => {
   let id = req.params.id;
   try {
     let consultaUsuario = await usuariosController.buscar(id);
@@ -77,7 +77,7 @@ app.get("/api/usuarios/:id",verifyToken, async (req, res) => {
 });
 
 //BORRAR
-app.delete("/api/usuarios/:id",verifyToken, async (req, res) => {
+app.delete("/api/usuarios/:id", verifyToken, async (req, res) => {
   let id = req.params.id;
   try {
     await usuariosController.eliminar(id);
@@ -127,8 +127,9 @@ app.get("/api/municipios/:id", async (req, res) => {
 
 // INICIO PETICION CATEGORIAS
 //CREAR
-app.post("/api/categorias",verifyToken, async (req, res) => {
+app.post("/api/categorias", verifyToken, async (req, res) => {
   let categoria = req.body;
+  categoria.usuario = req.usuario;
   try {
     await categoriasController.insertar(categoria);
     res.status(200).json(categoria);
@@ -138,7 +139,7 @@ app.post("/api/categorias",verifyToken, async (req, res) => {
 });
 
 //ACTUALIZAR
-app.put("/api/categorias",verifyToken, async (req, res) => {
+app.put("/api/categorias", verifyToken, async (req, res) => {
   let categoria = req.body;
   try {
     await categoriasController.actualizar(categoria);
@@ -149,7 +150,7 @@ app.put("/api/categorias",verifyToken, async (req, res) => {
 });
 
 //LISTAR
-app.get("/api/categorias/usuario/",verifyToken, async (req, res) => {
+app.get("/api/categorias/usuario/", verifyToken, async (req, res) => {
   let usuario = req.usuario;
   try {
     let listacategorias = await categoriasController.listar(usuario);
@@ -160,7 +161,7 @@ app.get("/api/categorias/usuario/",verifyToken, async (req, res) => {
 });
 
 //BUSCAR
-app.get("/api/categorias/:id",verifyToken, async (req, res) => {
+app.get("/api/categorias/:id", verifyToken, async (req, res) => {
   let id = req.params.id;
   try {
     let consultaCategoria = await categoriasController.buscar(id);
@@ -171,7 +172,7 @@ app.get("/api/categorias/:id",verifyToken, async (req, res) => {
 });
 
 //BORRAR
-app.delete("/api/categorias/:id",verifyToken, async (req, res) => {
+app.delete("/api/categorias/:id", verifyToken, async (req, res) => {
   let id = req.params.id;
   try {
     await categoriasController.eliminar(id);
@@ -184,7 +185,7 @@ app.delete("/api/categorias/:id",verifyToken, async (req, res) => {
 
 // INICIO PETICION PRODUCTOS
 //CREAR
-app.post("/api/productos",verifyToken, async (req, res) => {
+app.post("/api/productos", verifyToken, async (req, res) => {
   let producto = req.body;
   try {
     await productosController.insertar(producto);
@@ -195,7 +196,7 @@ app.post("/api/productos",verifyToken, async (req, res) => {
 });
 
 //ACTUALIZAR
-app.put("/api/productos",verifyToken, async (req, res) => {
+app.put("/api/productos", verifyToken, async (req, res) => {
   let producto = req.body;
   try {
     await productosController.actualizar(producto);
@@ -206,7 +207,7 @@ app.put("/api/productos",verifyToken, async (req, res) => {
 });
 
 //LISTAR
-app.get("/api/productos/usuario/",verifyToken, async (req, res) => {
+app.get("/api/productos/usuario/", verifyToken, async (req, res) => {
   let usuario = req.usuario;
   try {
     let listaProdutos = await productosController.listar(usuario);
@@ -217,7 +218,7 @@ app.get("/api/productos/usuario/",verifyToken, async (req, res) => {
 });
 
 //LISTARXCATEGORIA
-app.post("/api/productos/usuario/",verifyToken, async (req, res) => {
+app.post("/api/productos/usuario/", verifyToken, async (req, res) => {
   let busqueda = req.body;
   try {
     let listaProdutos = await productosController.listarxcategoria(busqueda);
@@ -228,7 +229,7 @@ app.post("/api/productos/usuario/",verifyToken, async (req, res) => {
 });
 
 //BUSCAR
-app.get("/api/productos/:id",verifyToken, async (req, res) => {
+app.get("/api/productos/:id", verifyToken, async (req, res) => {
   let id = req.params.id;
   try {
     let consultaProductos = await productosController.buscar(id);
@@ -239,7 +240,7 @@ app.get("/api/productos/:id",verifyToken, async (req, res) => {
 });
 
 //BORRAR
-app.delete("/api/productos/:id",verifyToken, async (req, res) => {
+app.delete("/api/productos/:id", verifyToken, async (req, res) => {
   let id = req.params.id;
   try {
     await productosController.eliminar(id);
@@ -252,7 +253,7 @@ app.delete("/api/productos/:id",verifyToken, async (req, res) => {
 
 // INICIO PETICION EGRESOS
 //CREAR
-app.post("/api/egresos",verifyToken, async (req, res) => {
+app.post("/api/egresos", verifyToken, async (req, res) => {
   let egresos = req.body;
   try {
     await egresosController.insertar(egresos);
@@ -263,7 +264,7 @@ app.post("/api/egresos",verifyToken, async (req, res) => {
 });
 
 //ACTUALIZAR
-app.put("/api/egresos",verifyToken, async (req, res) => {
+app.put("/api/egresos", verifyToken, async (req, res) => {
   let egresos = req.body;
   try {
     await egresosController.actualizar(egresos);
@@ -274,7 +275,7 @@ app.put("/api/egresos",verifyToken, async (req, res) => {
 });
 
 //LISTAR
-app.get("/api/egresos/usuario/",verifyToken, async (req, res) => {
+app.get("/api/egresos/usuario/", verifyToken, async (req, res) => {
   let usuario = req.usuario;
   try {
     let listaegresos = await egresosController.listar(usuario);
@@ -285,7 +286,7 @@ app.get("/api/egresos/usuario/",verifyToken, async (req, res) => {
 });
 
 //BUSCAR
-app.get("/api/egresos/:id",verifyToken, async (req, res) => {
+app.get("/api/egresos/:id", verifyToken, async (req, res) => {
   let id = req.params.id;
   try {
     let consultaegresos = await egresosController.buscar(id);
@@ -296,7 +297,7 @@ app.get("/api/egresos/:id",verifyToken, async (req, res) => {
 });
 
 //BORRAR
-app.delete("/api/egresos/:id",verifyToken, async (req, res) => {
+app.delete("/api/egresos/:id", verifyToken, async (req, res) => {
   let id = req.params.id;
   try {
     await egresosController.eliminar(id);
@@ -320,7 +321,7 @@ app.post("/api/ingresos", verifyToken, async (req, res) => {
 });
 
 //ACTUALIZAR
-app.put("/api/ingresos",verifyToken, async (req, res) => {
+app.put("/api/ingresos", verifyToken, async (req, res) => {
   let ingreso = req.body;
   try {
     await ingresosController.actualizar(ingreso);
@@ -331,7 +332,7 @@ app.put("/api/ingresos",verifyToken, async (req, res) => {
 });
 
 //LISTAR
-app.get("/api/ingresos/usuario/",verifyToken, async (req, res) => {
+app.get("/api/ingresos/usuario/", verifyToken, async (req, res) => {
   let usuario = req.usuario;
   try {
     let listaingresos = await ingresosController.listar(usuario);
@@ -342,7 +343,7 @@ app.get("/api/ingresos/usuario/",verifyToken, async (req, res) => {
 });
 
 //BUSCAR
-app.get("/api/ingresos/:id",verifyToken, async (req, res) => {
+app.get("/api/ingresos/:id", verifyToken, async (req, res) => {
   let id = req.params.id;
   try {
     let consultaingresos = await ingresosController.buscar(id);
@@ -353,7 +354,7 @@ app.get("/api/ingresos/:id",verifyToken, async (req, res) => {
 });
 
 //BORRAR
-app.delete("/api/ingresos/:id",verifyToken, async (req, res) => {
+app.delete("/api/ingresos/:id", verifyToken, async (req, res) => {
   let id = req.params.id;
   try {
     await ingresosController.eliminar(id);

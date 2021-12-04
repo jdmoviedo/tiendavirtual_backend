@@ -9,7 +9,11 @@ egresosController.insertar = async (egreso) => {
 };
 
 egresosController.listar = async (usuario) => {
-  return await egresos.find({ "producto[].categoria[].usuario": usuario });
+  return await (
+    await egresos.find()
+  ).filter((egreso) => {
+    return egreso.producto[[0]].categoria[0].usuario[0].id == usuario;
+  });
 };
 
 egresosController.actualizar = async (egreso) => {
